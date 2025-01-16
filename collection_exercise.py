@@ -30,6 +30,7 @@ def extract_extensions(_list):
     return e_indexs, extensions
 
 
+"""
 def find_extensions(_list):
     for element in _list:
         lower_element = element.lower()
@@ -45,7 +46,7 @@ def find_extensions(_list):
             print(f"{lower_element} (Aucune extension)")
         else:
             print(f"{lower_element} (Extension non connue)")
-
+"""
 
 #print(extract_extensions(_field))
 
@@ -53,15 +54,19 @@ def new_function(_list):
     for element in _list:
         lower_element = element.lower()
         split_element = lower_element.split(".")[-1]
+        found = False
 
         for ext, definition in extensions_definition:
             if split_element == ext:
                 print(f"{element} | {definition}")
+                found = True
+                break
 
-        if not any(ext in extensions_definition for ext in ["exe", "doc", "txt", "jpeg"]):
-            print(f"{element} | Aucune extension")
-        else:
-            print(f"{element} | Extension non connue")
+        if not found:
+            if "." not in element:
+                print(f"{element} | Aucune extension")
+            else:
+                print(f"{element} | Extension inconnue")
 
 
 new_function(_field)
